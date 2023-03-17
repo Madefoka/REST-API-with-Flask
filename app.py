@@ -11,7 +11,7 @@ def get_stores():
     return {"stores": list(stores.values())}
 
 
-@ app.post("/store")
+@app.post("/store")
 def create_store():
     store_data = request.get_json()
     store_id = uuid.uuid4().hex
@@ -20,7 +20,7 @@ def create_store():
     return store, 201
 
 
-@ app.post("/item")
+@app.post("/item")
 def create_item():
     item_data = request.get_json()
     if item_data["store_id"] not in stores:
@@ -38,7 +38,7 @@ def get_all_items():
     return {"items": list(items.values())}
 
 
-@ app.get("/store/<string:store_id>")
+@app.get("/store/<string:store_id>")
 def get_store(store_id):
     try:
         return stores[store_id]
@@ -46,7 +46,7 @@ def get_store(store_id):
         return {"messsage": "Store not found"}, 404
 
 
-@ app.get("/item/<string:item_id>")
+@app.get("/item/<string:item_id>")
 def get_item(item_id):
     try:
         return items[item_id]
